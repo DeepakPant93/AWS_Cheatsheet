@@ -1,13 +1,15 @@
 #!/bin/bash
 
+echo "Enter the device partition name like xvdbd, xvdbe"
+read PARTITION_NANE 
+
 # Define variables
-DISK_NANE="$1"
-DEVICE_NAME="/dev/$1"  # Device name on the instance (adjust if needed)
-MOUNT_POINT="/mnt/$1"  # Mount point directory on the instance
+DEVICE_NAME="/dev/$PARTITION_NANE"  # Device name on the instance (adjust if needed)
+MOUNT_POINT="/mnt/$PARTITION_NANE"  # Mount point directory on the instance
 
 # Check if the device is available and then proceed
 echo "Checking if the device is available..."
-if lsblk | grep -q "$DISK_NAME"; then
+if lsblk | grep -q "$PARTITION_NANE"; then
   echo "Device $DEVICE_NAME is available. Proceeding with formatting and mounting..."
 
   # Create a filesystem on the volume (skip this if the volume is not new)
